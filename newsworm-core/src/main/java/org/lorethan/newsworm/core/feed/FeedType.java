@@ -1,4 +1,4 @@
-package org.lorethan.newsworm.core;
+package org.lorethan.newsworm.core.feed;
 
 public enum FeedType
 {

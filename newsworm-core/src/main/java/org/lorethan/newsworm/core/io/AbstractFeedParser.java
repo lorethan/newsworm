@@ -1,9 +1,10 @@
 package org.lorethan.newsworm.core.io;
 
 import org.jdom2.Namespace;
-import org.lorethan.newsworm.core.FeedType;
+import org.lorethan.newsworm.core.feed.AbstractGenericFeed;
+import org.lorethan.newsworm.core.feed.FeedType;
 
-public abstract class AbstractFeedParser implements FeedParser
+public abstract class AbstractFeedParser<T extends AbstractGenericFeed> implements FeedParser<T>
 {
     private final FeedType feedType;
     private final Namespace namespace;
