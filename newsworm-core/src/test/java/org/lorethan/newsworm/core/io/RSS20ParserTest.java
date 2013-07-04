@@ -14,7 +14,9 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.junit.Test;
 import org.lorethan.newsworm.core.extension.Extension;
+import org.lorethan.newsworm.core.extension.atom.Atom10Extension;
 import org.lorethan.newsworm.core.extension.syndication.SyndicationExtension;
+import org.lorethan.newsworm.core.feed.atom.Link;
 import org.lorethan.newsworm.core.feed.rss.Channel;
 
 public class RSS20ParserTest
@@ -29,11 +31,25 @@ public class RSS20ParserTest
     private static final String CHANNEL_TITLE = "NRKbeta";
 
     private static final SyndicationExtension syndicationExtension = new SyndicationExtension();
+    private static final Atom10Extension atomExtension = new Atom10Extension();
 
     static
     {
         syndicationExtension.setUpdatePeriod(SyndicationExtension.UpdatePeriod.HOURLY);
         syndicationExtension.setUpdateFrequency(1);
+
+        final Link selfLink = new Link();
+        selfLink.setRel("self");
+        selfLink.setHref("http://feeds.feedburner.com/nrkbeta");
+        selfLink.setType("application/rss+xml");
+
+        final Link hubLink = new Link();
+        hubLink.setRel("hub");
+        hubLink.setHref("http://pubsubhubbub.appspot.com/");
+        hubLink.setType("");
+
+        atomExtension.addLink(selfLink);
+        atomExtension.addLink(hubLink);
     }
 
     @Test
@@ -61,6 +77,6 @@ public class RSS20ParserTest
         assertThat(channel.getLink(), is(CHANNEL_LINK));
         assertThat(channel.getTitle(), is(CHANNEL_TITLE));
 
-        assertThat(channel.getExtensions(), IsIterableContainingInAnyOrder.<Extension>containsInAnyOrder(syndicationExtension));
+        assertThat(channel.getExtensions(), IsIterableContainingInAnyOrder.<Extension>containsInAnyOrder(syndicationExtension, atomExtension));
     }
 }

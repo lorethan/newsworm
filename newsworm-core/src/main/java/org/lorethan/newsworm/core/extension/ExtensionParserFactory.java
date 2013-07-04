@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Namespace;
+import org.lorethan.newsworm.core.extension.atom.Atom10ExtensionParser;
+import org.lorethan.newsworm.core.extension.dc.DublinCoreExtensionParser;
 import org.lorethan.newsworm.core.extension.syndication.SyndicationExtensionParser;
 
 public abstract class ExtensionParserFactory
@@ -13,6 +15,8 @@ public abstract class ExtensionParserFactory
     static
     {
         extensionParsers.add(new SyndicationExtensionParser());
+        extensionParsers.add(new DublinCoreExtensionParser());
+        extensionParsers.add(new Atom10ExtensionParser());
     }
 
     private ExtensionParserFactory()
