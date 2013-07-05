@@ -4,5 +4,7 @@ public interface Extensionable
 {
     Iterable<Extension> getExtensions();
 
-    void addExtension(final Extension extension);
+    void addExtension(Extension extension);
+
+    Extension getExtension(String namespaceUri);
 }

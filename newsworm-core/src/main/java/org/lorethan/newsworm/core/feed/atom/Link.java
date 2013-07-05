@@ -6,6 +6,17 @@ public class Link
     private String type;
     private String href;
 
+    public Link()
+    {
+    }
+
+    public Link(final String rel, final String type, final String href)
+    {
+        this.rel = rel;
+        this.type = type;
+        this.href = href;
+    }
+
     public String getRel()
     {
         return rel;

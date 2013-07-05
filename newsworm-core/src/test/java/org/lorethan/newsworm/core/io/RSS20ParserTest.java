@@ -2,7 +2,6 @@ package org.lorethan.newsworm.core.io;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,8 +11,8 @@ import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lorethan.newsworm.core.extension.Extension;
 import org.lorethan.newsworm.core.extension.atom.Atom10Extension;
 import org.lorethan.newsworm.core.extension.syndication.SyndicationExtension;
 import org.lorethan.newsworm.core.feed.atom.Link;
@@ -29,31 +28,20 @@ public class RSS20ParserTest
     private static final Date CHANNEL_LAST_BUILD_DATE = dateParser.parse("Mon, 17 Sep 2012 11:35:12 +0000");
     private static final String CHANNEL_LINK = "http://nrkbeta.no";
     private static final String CHANNEL_TITLE = "NRKbeta";
+    private static final Link ATOM_CHANNEL_SELF_LINK = new Link("self", "application/rss+xml", "http://feeds.feedburner.com/nrkbeta");
+    private static final Link ATOM_CHANNEL_HUB_LINK = new Link("hub", "", "http://pubsubhubbub.appspot.com/");
+    private static final SyndicationExtension EXPECTED_SYNDICATION_EXTENSION = new SyndicationExtension();
 
-    private static final SyndicationExtension syndicationExtension = new SyndicationExtension();
-    private static final Atom10Extension atomExtension = new Atom10Extension();
+    private static Channel channel;
 
     static
     {
-        syndicationExtension.setUpdatePeriod(SyndicationExtension.UpdatePeriod.HOURLY);
-        syndicationExtension.setUpdateFrequency(1);
-
-        final Link selfLink = new Link();
-        selfLink.setRel("self");
-        selfLink.setHref("http://feeds.feedburner.com/nrkbeta");
-        selfLink.setType("application/rss+xml");
-
-        final Link hubLink = new Link();
-        hubLink.setRel("hub");
-        hubLink.setHref("http://pubsubhubbub.appspot.com/");
-        hubLink.setType("");
-
-        atomExtension.addLink(selfLink);
-        atomExtension.addLink(hubLink);
+        EXPECTED_SYNDICATION_EXTENSION.setUpdatePeriod(SyndicationExtension.UpdatePeriod.HOURLY);
+        EXPECTED_SYNDICATION_EXTENSION.setUpdateFrequency(1);
     }
 
-    @Test
-    public void testParseNrkBeta() throws IOException, JDOMException
+    @BeforeClass
+    public static void initialize() throws IOException, JDOMException
     {
         final InputStream inputStream = RSS20ParserTest.class.getResourceAsStream("/nrkbeta.xml");
 
@@ -64,19 +52,60 @@ public class RSS20ParserTest
 
         final RSS20Parser parser = new RSS20Parser();
 
-        final boolean canParse = parser.canParse(document, reader.getEncoding());
+        channel = parser.parse(document, reader.getEncoding());
+    }
 
-        assertThat(canParse, notNullValue());
+//    assertThat(channel.getExtensions(), IsIterableContainingInAnyOrder.<Extension>containsInAnyOrder(syndicationExtension, atomExtension));
 
-        final Channel channel = parser.parse(document, reader.getEncoding());
-
-        assertThat(channel.getDescription(), is(CHANNEL_DESCRIPTION));
-        assertThat(channel.getGenerator(), is(CHANNEL_GENERATOR));
-        assertThat(channel.getLanguage(), is(CHANNEL_LANGUAGE));
-        assertThat(channel.getLastBuildDate(), is(CHANNEL_LAST_BUILD_DATE));
-        assertThat(channel.getLink(), is(CHANNEL_LINK));
+    @Test
+    public void checkChannelTitleIsParsed()
+    {
         assertThat(channel.getTitle(), is(CHANNEL_TITLE));
+    }
 
-        assertThat(channel.getExtensions(), IsIterableContainingInAnyOrder.<Extension>containsInAnyOrder(syndicationExtension, atomExtension));
+    @Test
+    public void checkChannelDescriptionIsParsed()
+    {
+        assertThat(channel.getDescription(), is(CHANNEL_DESCRIPTION));
+    }
+
+    @Test
+    public void checkChannelGeneratorIsParsed()
+    {
+        assertThat(channel.getGenerator(), is(CHANNEL_GENERATOR));
+    }
+
+    @Test
+    public void checkChannelLanguageIsParsed()
+    {
+        assertThat(channel.getLanguage(), is(CHANNEL_LANGUAGE));
+    }
+
+    @Test
+    public void checkChannelLastBuildDateIsParsed()
+    {
+        assertThat(channel.getLastBuildDate(), is(CHANNEL_LAST_BUILD_DATE));
+    }
+
+    @Test
+    public void checkChannelLinkIsParsed()
+    {
+        assertThat(channel.getLink(), is(CHANNEL_LINK));
+    }
+
+    @Test
+    public void checkChannelAtomExtensionLinksIsParsed()
+    {
+        final Atom10Extension atomExtension = (Atom10Extension) channel.getExtension(Atom10Extension.NAMESPACE_URI);
+
+        assertThat(atomExtension.getLinks(), IsIterableContainingInAnyOrder.<Link>containsInAnyOrder(ATOM_CHANNEL_SELF_LINK, ATOM_CHANNEL_HUB_LINK));
+    }
+
+    @Test
+    public void checkChannelSyndicationExtensionIsParsed()
+    {
+        final SyndicationExtension extension = (SyndicationExtension) channel.getExtension(SyndicationExtension.NAMESPACE_URI);
+
+        assertThat(extension, is(EXPECTED_SYNDICATION_EXTENSION));
     }
 }

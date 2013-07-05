@@ -39,15 +39,7 @@ public abstract class AbstractFeedParser<T extends AbstractGenericFeed> implemen
 
         if (extensionParser != null)
         {
-            Extension existingExtension = null;
-            for (final Extension extension : extensionable.getExtensions())
-            {
-                if (extension.getNamespace().equals(elementNamespace))
-                {
-                    existingExtension = extension;
-                    break;
-                }
-            }
+            final Extension existingExtension = extensionable.getExtension(elementNamespace.getURI());
 
             final Extension extension = extensionParser.parse(element, existingExtension);
 
@@ -61,6 +53,4 @@ public abstract class AbstractFeedParser<T extends AbstractGenericFeed> implemen
             System.out.println("Not able to parse extension for namespace: " + elementNamespace.getURI());
         }
     }
-
-
 }
