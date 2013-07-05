@@ -1,6 +1,11 @@
 package org.lorethan.newsworm.core.io;
 
+import org.jdom2.Element;
 import org.jdom2.Namespace;
+import org.lorethan.newsworm.core.extension.Extension;
+import org.lorethan.newsworm.core.extension.ExtensionParser;
+import org.lorethan.newsworm.core.extension.ExtensionParserFactory;
+import org.lorethan.newsworm.core.extension.Extensionable;
 import org.lorethan.newsworm.core.feed.AbstractGenericFeed;
 import org.lorethan.newsworm.core.feed.FeedType;
 
@@ -25,4 +30,37 @@ public abstract class AbstractFeedParser<T extends AbstractGenericFeed> implemen
     {
         return namespace;
     }
+
+    protected void resolveExtensions(final Element element, final Extensionable extensionable)
+    {
+        final Namespace elementNamespace = element.getNamespace();
+
+        final ExtensionParser<?> extensionParser = ExtensionParserFactory.getExtensionParser(elementNamespace);
+
+        if (extensionParser != null)
+        {
+            Extension existingExtension = null;
+            for (final Extension extension : extensionable.getExtensions())
+            {
+                if (extension.getNamespace().equals(elementNamespace))
+                {
+                    existingExtension = extension;
+                    break;
+                }
+            }
+
+            final Extension extension = extensionParser.parse(element, existingExtension);
+
+            if (existingExtension == null)
+            {
+                extensionable.addExtension(extension);
+            }
+        }
+        else
+        {
+            System.out.println("Not able to parse extension for namespace: " + elementNamespace.getURI());
+        }
+    }
+
+
 }

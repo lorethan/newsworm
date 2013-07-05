@@ -1,16 +1,13 @@
 package org.lorethan.newsworm.core.feed;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.lorethan.newsworm.core.extension.Extension;
+import org.lorethan.newsworm.core.extension.AbstractExtensionable;
 
-public abstract class AbstractGenericFeed implements Serializable
+public abstract class AbstractGenericFeed extends AbstractExtensionable implements Serializable
 {
     private final FeedType feedType;
     private final String encoding;
-    private final List<Extension> extensions = new ArrayList<>();
 
     protected AbstractGenericFeed(final FeedType feedType, final String encoding)
     {
@@ -31,15 +28,5 @@ public abstract class AbstractGenericFeed implements Serializable
     public final String getEncoding()
     {
         return encoding;
-    }
-
-    public Iterable<Extension> getExtensions()
-    {
-        return extensions;
-    }
-
-    public void addExtension(final Extension extension)
-    {
-        extensions.add(extension);
     }
 }

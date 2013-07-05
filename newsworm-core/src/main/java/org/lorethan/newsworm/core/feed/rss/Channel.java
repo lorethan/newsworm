@@ -1,6 +1,8 @@
 package org.lorethan.newsworm.core.feed.rss;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.lorethan.newsworm.core.feed.AbstractGenericFeed;
 import org.lorethan.newsworm.core.feed.FeedType;
@@ -13,6 +15,7 @@ public class Channel extends AbstractGenericFeed
     private String link;
     private String generator;
     private Date lastBuildDate;
+    private final List<Item> items = new ArrayList<>();
 
     public Channel(final FeedType feedType, final String encoding)
     {
@@ -77,5 +80,15 @@ public class Channel extends AbstractGenericFeed
     public void setLastBuildDate(final Date lastBuildDate)
     {
         this.lastBuildDate = lastBuildDate;
+    }
+
+    public Iterable<Item> getItems()
+    {
+        return items;
+    }
+
+    public void addItem(final Item item)
+    {
+        items.add(item);
     }
 }
