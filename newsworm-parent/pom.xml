@@ -49,7 +49,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    <modules>
-        <module>newsworm-core</module>
-    </modules>
 </project>
