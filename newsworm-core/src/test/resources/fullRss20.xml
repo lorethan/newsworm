@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Newsworm title</title>
+        <link>http://newsworm.org/channel</link>
+        <description>Newsworm description.</description>
+        <lastBuildDate>Mon, 17 Sep 2012 11:35:12 +0000</lastBuildDate>
+        <pubDate>Mon, 17 Sep 2012 11:35:00 +0000</pubDate>
+        <language>en</language>
+        <generator>http://newsworm.org</generator>
+        <skipDays>
+            <skipDay>Sunday</skipDay>
+            <skipDay>Saturday</skipDay>
+        </skipDays>
+        <skipHours>
+            <skipHour>0</skipHour>
+            <skipHour>1</skipHour>
+        </skipHours>
+        <ttl>10</ttl>
+        <cloud domain="www.w3schools.com"
+               port="80"
+               path="/RPC"
+               registerProcedure="NotifyMe"
+               protocol="xml-rpc"/>
+        <copyright>2013 Lorethan Inc. All rights reserved.</copyright>
+        <docs>http://www.w3schools.com/rss/default.asp</docs>
+        <image>
+            <url>http://www.w3schools.com/images/logo.gif</url>
+            <title>W3Schools.com</title>
+            <description>W3Schools</description>
+            <link>http://www.w3schools.com</link>
+            <height>400</height>
+            <width>144</width>
+        </image>
+        <managingEditor>lorethan@newsworm.org</managingEditor>
+        <rating>(PICS-1.1 "http://www.classify.org/safesurf/" 1 r (SS~~000 1))</rating>
+        <textInput>
+            <description>Search Google</description>
+            <name>q</name>
+            <title>Search</title>
+            <link>http://www.goggle.com/search?</link>
+        </textInput>
+        <webMaster>lorethan@newsworm.org</webMaster>
+        <item>
+            <author>Newsworm item author</author>
+            <title>Newsworm item title</title>
+            <link>http://newsworm.org/item</link>
+            <comments>http://newsworm.org/item#comments</comments>
+            <pubDate>Mon, 17 Sep 2012 11:35:12 +0000</pubDate>
+            <category><![CDATA[RSS 2.0]]></category>
+            <guid isPermaLink="true">http://newsworm.org/item</guid>
+            <description><![CDATA[Newsworm item description]]></description>
+            <source url="http://newsworm.org/itemSource">Newsworm item source</source>
+            <enclosure url="http://newsworm.org/image.png" type="image/png" length="2048"/>
+        </item>
+    </channel>
+</rss>

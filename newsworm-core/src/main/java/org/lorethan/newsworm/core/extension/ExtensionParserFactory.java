@@ -10,7 +10,7 @@ import org.lorethan.newsworm.core.extension.syndication.SyndicationExtensionPars
 
 public abstract class ExtensionParserFactory
 {
-    private static final List<ExtensionParser<?>> extensionParsers = new ArrayList<>();
+    private static final List<ExtensionParser<? extends Extension>> extensionParsers = new ArrayList<>();
 
     static
     {
@@ -23,9 +23,9 @@ public abstract class ExtensionParserFactory
     {
     }
 
-    public static ExtensionParser<?> getExtensionParser(final Namespace namespace)
+    public static ExtensionParser<? extends Extension> getExtensionParser(final Namespace namespace)
     {
-        for (final ExtensionParser<?> extensionParser : extensionParsers)
+        for (final ExtensionParser<? extends Extension> extensionParser : extensionParsers)
         {
             if (extensionParser.canParse(namespace))
             {
@@ -35,6 +35,4 @@ public abstract class ExtensionParserFactory
 
         return null;
     }
-
-
 }

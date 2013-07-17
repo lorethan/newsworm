@@ -10,5 +10,5 @@ public interface FeedParser<T extends AbstractGenericFeed>
 
     T parse(Document document, String encoding);
 
-    boolean canParse(Document document, String encoding);
+    boolean canParse(Document document);
 }

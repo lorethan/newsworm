@@ -12,7 +12,7 @@ public class Item extends AbstractExtensionable
     private String title;
     private String description;
     private String link;
-    private String source;
+    private Source source;
     private Date pubDate;
     private String author;
     private String comments;
@@ -59,12 +59,12 @@ public class Item extends AbstractExtensionable
         this.link = link;
     }
 
-    public String getSource()
+    public Source getSource()
     {
         return source;
     }
 
-    public void setSource(final String source)
+    public void setSource(final Source source)
     {
         this.source = source;
     }
