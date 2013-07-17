@@ -1,4 +1,4 @@
-package org.lorethan.newsworm.core.feed.rss;
+package org.lorethan.newsworm.rss.feed;
 
 public class TextInput
 {

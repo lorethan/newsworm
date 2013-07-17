@@ -1,4 +1,4 @@
-package org.lorethan.newsworm.core.io;
+package org.lorethan.newsworm.rss.io;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -22,6 +22,9 @@ import org.lorethan.newsworm.core.feed.rss.Hour;
 import org.lorethan.newsworm.core.feed.rss.Image;
 import org.lorethan.newsworm.core.feed.rss.Source;
 import org.lorethan.newsworm.core.feed.rss.TextInput;
+import org.lorethan.newsworm.core.io.DateParser;
+import org.lorethan.newsworm.core.io.RFC822DateParser;
+import org.lorethan.newsworm.core.io.XmlCharsetResolvingReader;
 
 public class RSS20ParserTest
 {

@@ -1,4 +1,4 @@
-package org.lorethan.newsworm.core.feed.rss;
+package org.lorethan.newsworm.rss.feed;
 
 import java.util.ArrayList;
 import java.util.Date;

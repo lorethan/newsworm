@@ -1,4 +1,4 @@
-package org.lorethan.newsworm.core.io;
+package org.lorethan.newsworm.rss.io;
 
 import java.util.Date;
 
@@ -18,6 +18,9 @@ import org.lorethan.newsworm.core.feed.rss.Image;
 import org.lorethan.newsworm.core.feed.rss.Item;
 import org.lorethan.newsworm.core.feed.rss.Source;
 import org.lorethan.newsworm.core.feed.rss.TextInput;
+import org.lorethan.newsworm.core.io.AbstractFeedParser;
+import org.lorethan.newsworm.core.io.DateParser;
+import org.lorethan.newsworm.core.io.RFC822DateParser;
 
 public class RSS20Parser extends AbstractFeedParser<Channel>
 {
