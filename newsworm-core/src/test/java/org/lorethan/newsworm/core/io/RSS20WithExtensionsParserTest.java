@@ -1,25 +1,11 @@
 package org.lorethan.newsworm.core.io;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import org.junit.Ignore;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
-
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
-import org.jdom2.Document;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.lorethan.newsworm.core.extension.atom.Atom10Extension;
-import org.lorethan.newsworm.core.extension.syndication.SyndicationExtension;
-import org.lorethan.newsworm.core.feed.atom.Link;
-import org.lorethan.newsworm.core.feed.rss.Channel;
-
+@Ignore
 public class RSS20WithExtensionsParserTest
 {
+    /*
     private static final DateParser dateParser = new RFC822DateParser();
 
     private static final String CHANNEL_DESCRIPTION = "NRKs sandkasse for teknologi, duppeditter, mye medier og alt annet som er viktig her i livet.";
@@ -108,4 +94,5 @@ public class RSS20WithExtensionsParserTest
 
         assertThat(extension, is(EXPECTED_SYNDICATION_EXTENSION));
     }
+    */
 }

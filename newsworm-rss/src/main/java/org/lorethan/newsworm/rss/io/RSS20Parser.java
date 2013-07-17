@@ -8,19 +8,19 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.lorethan.newsworm.core.feed.FeedType;
-import org.lorethan.newsworm.core.feed.rss.Channel;
-import org.lorethan.newsworm.core.feed.rss.Cloud;
-import org.lorethan.newsworm.core.feed.rss.Day;
-import org.lorethan.newsworm.core.feed.rss.Enclosure;
-import org.lorethan.newsworm.core.feed.rss.GUID;
-import org.lorethan.newsworm.core.feed.rss.Hour;
-import org.lorethan.newsworm.core.feed.rss.Image;
-import org.lorethan.newsworm.core.feed.rss.Item;
-import org.lorethan.newsworm.core.feed.rss.Source;
-import org.lorethan.newsworm.core.feed.rss.TextInput;
 import org.lorethan.newsworm.core.io.AbstractFeedParser;
 import org.lorethan.newsworm.core.io.DateParser;
 import org.lorethan.newsworm.core.io.RFC822DateParser;
+import org.lorethan.newsworm.rss.feed.Channel;
+import org.lorethan.newsworm.rss.feed.Cloud;
+import org.lorethan.newsworm.rss.feed.Day;
+import org.lorethan.newsworm.rss.feed.Enclosure;
+import org.lorethan.newsworm.rss.feed.GUID;
+import org.lorethan.newsworm.rss.feed.Hour;
+import org.lorethan.newsworm.rss.feed.Image;
+import org.lorethan.newsworm.rss.feed.Item;
+import org.lorethan.newsworm.rss.feed.Source;
+import org.lorethan.newsworm.rss.feed.TextInput;
 
 public class RSS20Parser extends AbstractFeedParser<Channel>
 {

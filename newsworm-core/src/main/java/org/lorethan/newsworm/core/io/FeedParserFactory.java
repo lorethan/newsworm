@@ -10,13 +10,13 @@ public abstract class FeedParserFactory
 {
     private static final List<FeedParser<? extends AbstractGenericFeed>> feedParsers = new ArrayList<>();
 
-    static
-    {
-        feedParsers.add(new RSS20Parser());
-    }
-
     private FeedParserFactory()
     {
+    }
+
+    public static void register(final FeedParser<? extends AbstractGenericFeed> feedParser)
+    {
+        feedParsers.add(feedParser);
     }
 
     public static FeedParser<? extends AbstractGenericFeed> getFeedParser(final Document document)
