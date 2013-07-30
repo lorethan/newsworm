@@ -5,7 +5,7 @@ import java.util.Map;
 
 public abstract class AbstractExtensionable implements Extensionable
 {
-    private final Map<String, Extension> extensionMap = new HashMap<>();
+    private final Map<String, Extension> extensionMap = new HashMap<String, Extension>();
 
     @Override
     public Iterable<Extension> getExtensions()

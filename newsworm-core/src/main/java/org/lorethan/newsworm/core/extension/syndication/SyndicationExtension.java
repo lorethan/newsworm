@@ -62,20 +62,8 @@ public class SyndicationExtension extends AbstractExtension
 
         final SyndicationExtension that = (SyndicationExtension) o;
 
-        if (updateFrequency != that.updateFrequency)
-        {
-            return false;
-        }
-        if (updateBase != null ? !updateBase.equals(that.updateBase) : that.updateBase != null)
-        {
-            return false;
-        }
-        if (updatePeriod != that.updatePeriod)
-        {
-            return false;
-        }
+        return updateFrequency == that.updateFrequency && !(updateBase != null ? !updateBase.equals(that.updateBase) : that.updateBase != null) && updatePeriod == that.updatePeriod;
 
-        return true;
     }
 
     @Override
@@ -97,20 +85,29 @@ public class SyndicationExtension extends AbstractExtension
 
         public static UpdatePeriod fromString(final String updatePeriodAsString)
         {
-            switch (updatePeriodAsString)
+            if ("hourly".equals(updatePeriodAsString))
             {
-                case "hourly":
-                    return HOURLY;
-                case "daily":
-                    return DAILY;
-                case "weekly":
-                    return WEEKLY;
-                case "monthly":
-                    return MONTHLY;
-                case "yearly":
-                    return YEARLY;
-                default:
-                    throw new IllegalArgumentException("Unknown update period: " + updatePeriodAsString);
+                return HOURLY;
+            }
+            else if ("daily".equals(updatePeriodAsString))
+            {
+                return DAILY;
+            }
+            else if ("weekly".equals(updatePeriodAsString))
+            {
+                return WEEKLY;
+            }
+            else if ("weekly".equals(updatePeriodAsString))
+            {
+                return MONTHLY;
+            }
+            else if ("yearly".equals(updatePeriodAsString))
+            {
+                return YEARLY;
+            }
+            else
+            {
+                throw new IllegalArgumentException("Unknown update period: " + updatePeriodAsString);
             }
         }
     }

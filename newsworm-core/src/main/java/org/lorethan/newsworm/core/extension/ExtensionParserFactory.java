@@ -10,7 +10,7 @@ import org.lorethan.newsworm.core.extension.syndication.SyndicationExtensionPars
 
 public abstract class ExtensionParserFactory
 {
-    private static final List<ExtensionParser<? extends Extension>> extensionParsers = new ArrayList<>();
+    private static final List<ExtensionParser<? extends Extension>> extensionParsers = new ArrayList<ExtensionParser<? extends Extension>>();
 
     static
     {

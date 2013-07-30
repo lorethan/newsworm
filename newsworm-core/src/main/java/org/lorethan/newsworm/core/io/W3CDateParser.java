@@ -8,20 +8,30 @@ import java.util.Locale;
 
 public class W3CDateParser implements DateParser
 {
-    private static final String W3CDTF = "yyyy-MM-dd'T'HH:mm:ssZ";
+    private static final String[] W3C_DTFS = {
+            "yyyy-MM-dd'T'HH:mm:ss.SSSz",
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "yyyy-MM-dd'T'HH:mm:ssz",
+            "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    };
 
     @Override
     public Date parse(final String dateAsString)
     {
-        final DateFormat dateFormat = new SimpleDateFormat(W3CDTF, Locale.US);
+        for (final String df : W3C_DTFS)
+        {
+            final DateFormat dateFormat = new SimpleDateFormat(df, Locale.US);
 
-        try
-        {
-            return dateFormat.parse(dateAsString);
+            try
+            {
+                return dateFormat.parse(dateAsString);
+            }
+            catch (ParseException e)
+            {
+                // ignore
+            }
         }
-        catch (ParseException e)
-        {
-            throw new IllegalArgumentException("Invalid date: " + dateAsString, e);
-        }
+
+        throw new IllegalArgumentException("Invalid date: " + dateAsString);
     }
 }

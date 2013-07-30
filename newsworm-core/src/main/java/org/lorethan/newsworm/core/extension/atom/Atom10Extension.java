@@ -11,7 +11,7 @@ public class Atom10Extension extends AbstractExtension
 {
     public static final String NAMESPACE_URI = "http://www.w3.org/2005/Atom";
 
-    private final List<Link> links = new ArrayList<>();
+    private final List<Link> links = new ArrayList<Link>();
 
     public Atom10Extension()
     {

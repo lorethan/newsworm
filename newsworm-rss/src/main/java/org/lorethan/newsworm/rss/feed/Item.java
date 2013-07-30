@@ -17,7 +17,7 @@ public class Item extends AbstractExtensionable
     private String author;
     private String comments;
     private Enclosure enclosure;
-    private final List<String> categories = new ArrayList<>();
+    private final List<String> categories = new ArrayList<String>();
 
     public GUID getGuid()
     {

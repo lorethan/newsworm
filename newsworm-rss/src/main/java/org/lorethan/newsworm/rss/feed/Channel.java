@@ -23,14 +23,14 @@ public class Channel extends AbstractGenericFeed
     private Cloud cloud;
     private String managingEditor;
     private String rating;
-    private Set<Day> skipDays = new HashSet<>();
-    private Set<Hour> skipHours = new HashSet<>();
+    private Set<Day> skipDays = new HashSet<Day>();
+    private Set<Hour> skipHours = new HashSet<Hour>();
     private TextInput textInput;
     private Integer ttl;
     private String webMaster;
     private Image image;
-    private Set<String> categories = new HashSet<>();
-    private final List<Item> items = new ArrayList<>();
+    private Set<String> categories = new HashSet<String>();
+    private final List<Item> items = new ArrayList<Item>();
 
     public Channel(final FeedType feedType, final String encoding)
     {

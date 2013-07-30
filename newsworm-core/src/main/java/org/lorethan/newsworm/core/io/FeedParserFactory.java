@@ -8,7 +8,7 @@ import org.lorethan.newsworm.core.feed.AbstractGenericFeed;
 
 public abstract class FeedParserFactory
 {
-    private static final List<FeedParser<? extends AbstractGenericFeed>> feedParsers = new ArrayList<>();
+    private static final List<FeedParser<? extends AbstractGenericFeed>> feedParsers = new ArrayList<FeedParser<? extends AbstractGenericFeed>>();
 
     private FeedParserFactory()
     {
