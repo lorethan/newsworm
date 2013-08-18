@@ -26,6 +26,11 @@
             <artifactId>hamcrest-library</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>uk.co.modular-it</groupId>
+            <artifactId>hamcrest-date</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

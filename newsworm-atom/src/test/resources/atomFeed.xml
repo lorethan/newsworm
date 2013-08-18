@@ -15,8 +15,21 @@
     <generator uri="http://www.example.com/" version="1.0">
         Example Toolkit
     </generator>
+    <author>
+        <name>Mark Pilgrim</name>
+        <uri>http://example.org/</uri>
+        <email>f8dy@example.com</email>
+    </author>
+    <contributor>
+        <name>Sam Ruby</name>
+    </contributor>
+    <category term="atom" scheme="http://myscheme" label="Atom"/>
+    <category term="syndication" scheme="http://myscheme" label="Syndication"/>
+    <icon>http://example.org/icon.png</icon>
+    <logo>http://example.org/logo.png</logo>
     <entry>
         <title>Atom draft-07 snapshot</title>
+        <summary type="html">&lt;i&gt;Atom draft-07 snapshot&lt;/i&gt;</summary>
         <link rel="alternate" type="text/html"
               href="http://example.org/2005/04/02/atom"/>
         <link rel="enclosure" type="audio/mpeg" length="1337"
@@ -43,5 +56,7 @@
                 </p>
             </div>
         </content>
+        <category term="atom" scheme="http://myscheme" label="Atom"/>
+        <category term="syndication" scheme="http://myscheme" label="Syndication"/>
     </entry>
 </feed>

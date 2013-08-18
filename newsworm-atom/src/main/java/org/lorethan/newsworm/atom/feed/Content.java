@@ -63,4 +63,15 @@ public class Content
         result = 31 * result + (src != null ? src.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString()
+    {
+        final StringBuilder sb = new StringBuilder("Content{");
+        sb.append("type='").append(type).append('\'');
+        sb.append(", value='").append(value).append('\'');
+        sb.append(", src='").append(src).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

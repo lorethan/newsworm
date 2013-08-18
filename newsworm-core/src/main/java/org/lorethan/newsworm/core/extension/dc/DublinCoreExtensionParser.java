@@ -4,14 +4,18 @@ import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.lorethan.newsworm.core.extension.Extension;
 import org.lorethan.newsworm.core.extension.ExtensionParser;
-import org.lorethan.newsworm.core.io.DateParser;
-import org.lorethan.newsworm.core.io.W3CDateParser;
+import org.lorethan.newsworm.core.io.datetime.W3CDateParser;
 
 public class DublinCoreExtensionParser implements ExtensionParser<DublinCoreExtension>
 {
     private static final Namespace NAMESPACE = Namespace.getNamespace(DublinCoreExtension.NAMESPACE_URI);
 
-    private final DateParser dateParser = new W3CDateParser();
+    private final W3CDateParser dateParser;
+
+    public DublinCoreExtensionParser(final W3CDateParser dateParser)
+    {
+        this.dateParser = dateParser;
+    }
 
     @Override
     public boolean canParse(final Namespace namspace)
@@ -52,7 +56,7 @@ public class DublinCoreExtensionParser implements ExtensionParser<DublinCoreExte
         }
         else if ("date".equalsIgnoreCase(element.getName()))
         {
-            extensionToUpdate.setDate(dateParser.parse(element.getValue()));
+            extensionToUpdate.setDate(dateParser.parseW3CDate(element.getValue()));
         }
         else if ("description".equalsIgnoreCase(element.getName()))
         {

@@ -4,14 +4,18 @@ import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.lorethan.newsworm.core.extension.Extension;
 import org.lorethan.newsworm.core.extension.ExtensionParser;
-import org.lorethan.newsworm.core.io.DateParser;
-import org.lorethan.newsworm.core.io.W3CDateParser;
+import org.lorethan.newsworm.core.io.datetime.W3CDateParser;
 
 public class SyndicationExtensionParser implements ExtensionParser<SyndicationExtension>
 {
     private static final Namespace NAMESPACE = Namespace.getNamespace(SyndicationExtension.NAMESPACE_URI);
 
-    private final DateParser dateParser = new W3CDateParser();
+    private final W3CDateParser dateParser;
+
+    public SyndicationExtensionParser(final W3CDateParser dateParser)
+    {
+        this.dateParser = dateParser;
+    }
 
     @Override
     public boolean canParse(final Namespace namspace)
@@ -48,7 +52,7 @@ public class SyndicationExtensionParser implements ExtensionParser<SyndicationEx
         }
         else if ("updateBase".equalsIgnoreCase(element.getName()))
         {
-            extensionToUpdate.setUpdateBase(dateParser.parse(element.getValue()));
+            extensionToUpdate.setUpdateBase(dateParser.parseW3CDate(element.getValue()));
         }
         else
         {
